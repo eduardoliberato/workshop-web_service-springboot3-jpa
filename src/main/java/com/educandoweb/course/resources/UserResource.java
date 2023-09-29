@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.educandoweb.course.entities.User;
 
-@RestController //is implemented by a rest controller 
-@RequestMapping(value = "/users")
+@RestController //This tells Spring that this code describes an endpoint that should be made available over the web 
+@RequestMapping(value = "/users")// tells Spring to use our findAll() method to answer requests that get sent to the http://localhost:8080/users address
 public class UserResource {
 	
 	//use the class "User" as the type 
