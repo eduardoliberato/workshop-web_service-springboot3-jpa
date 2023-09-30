@@ -2,11 +2,11 @@ package com.educandoweb.course.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.educandoweb.course.entities.Order;
+import com.educandoweb.course.entities.Category;
 
-public interface OrderRepository extends JpaRepository<Order, Long> {
+public interface CategoryRepository extends JpaRepository<Category, Long> {
 	
 	//is not necessary to implement the interface, because the JpaRepository already has a standard implementation
-	//This OrderRepository can access the database, this is his function 
+	//This CategoryRepository can access the database, this is his function 
 
 }
