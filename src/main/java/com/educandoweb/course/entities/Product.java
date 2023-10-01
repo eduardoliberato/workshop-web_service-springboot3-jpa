@@ -9,8 +9,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "tb_product")
@@ -27,7 +29,13 @@ public class Product implements Serializable {
 	private Double price;
 	private String imgUrl;
 	
-	@Transient//to indicate that this won't be used in the database, till we fix the rapport between the objects
+	@ManyToMany
+	@JoinTable(name = "tb_product_category", 
+	joinColumns = @JoinColumn(name = "product_id"),
+	inverseJoinColumns = @JoinColumn(name = "category_id"))
+	/* tb_product_category is the table of association
+	 * while product_id is the foreign key of the product
+	 * and inverseJoinColumns is the foreign key for the other entities, that is the category*/
 	private Set<Category> categories = new HashSet<>(); //using set instead of list, because each product can have only one category
 	//we instantiate it for be created empty, but not null - is HashSet and not set, because set is an interface and can't be instantiate 
 
