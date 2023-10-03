@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -39,6 +42,9 @@ public class Product implements Serializable {
 	private Set<Category> categories = new HashSet<>(); //using set instead of list, because each product can have only one category
 	//we instantiate it for be created empty, but not null - is HashSet and not set, because set is an interface and can't be instantiate 
 
+	@OneToMany(mappedBy = "id.product") //in the OrderItem we have the id, that has the product 
+	private Set<OrderItem> items = new HashSet<>(); //using set to indicate that we won't accept repetition of the same item
+	
 	public Product() {}
 	public Product(Long id, String name, String description, Double price, String imgUrl) {
 		//the category don't go here, because we already instantiate it , and is a collection 
@@ -81,6 +87,15 @@ public class Product implements Serializable {
 	}
 	public Set<Category> getCategories() {
 		return categories;
+	}
+	
+	@JsonIgnore //to stop the looping of calling the order
+	public Set<Order> getOrders(){
+		Set<Order> set = new HashSet<>();
+		for(OrderItem x : items) {
+			set.add(x.getOrder());
+		}
+		return set;
 	}
 	
 	@Override

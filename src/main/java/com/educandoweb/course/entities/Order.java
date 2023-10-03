@@ -41,7 +41,7 @@ public class Order implements Serializable {
 	@JoinColumn(name = "client_id") // name for the foreign key
 	private User client;
 	
-	@OneToMany(mappedBy = "id.order")//in the OrderItem we have the id, that has the order 
+	@OneToMany(mappedBy = "id.order")//in the OrderItemPK we have the id, that has the order 
 	private Set<OrderItem> items = new HashSet<>();
 
 	public Order() {
