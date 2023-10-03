@@ -13,7 +13,7 @@ import com.educandoweb.course.entities.Order;
 import com.educandoweb.course.services.OrderService;
 
 @RestController //This tells Spring that this code describes an end point that should be made available over the web 
-@RequestMapping(value = "/orders/")// tells Spring to use our findAll() method to answer requests that get sent to the http://localhost:8080/users address
+@RequestMapping(value = "/orders")// tells Spring to use our findAll() method to answer requests that get sent to the http://localhost:8080/users address
 public class OrderResource {
 	
 	@Autowired

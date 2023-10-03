@@ -13,7 +13,7 @@ import com.educandoweb.course.entities.Product;
 import com.educandoweb.course.services.ProductService;
 
 @RestController //This tells Spring that this code describes an endpoint that should be made available over the web 
-@RequestMapping(value = "/products/")// tells Spring to use our findAll() method to answer requests that get sent to the http://localhost:8080/users address
+@RequestMapping(value = "/products")// tells Spring to use our findAll() method to answer requests that get sent to the http://localhost:8080/users address
 public class ProductResource {
 	
 	@Autowired

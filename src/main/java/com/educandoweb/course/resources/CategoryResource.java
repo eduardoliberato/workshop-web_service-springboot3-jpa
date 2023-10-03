@@ -13,7 +13,7 @@ import com.educandoweb.course.entities.Category;
 import com.educandoweb.course.services.CategoryService;
 
 @RestController //This tells Spring that this code describes an endpoint that should be made available over the web 
-@RequestMapping(value = "/categories/")// tells Spring to use our findAll() method to answer requests that get sent to the http://localhost:8080/category/ address
+@RequestMapping(value = "/categories")// tells Spring to use our findAll() method to answer requests that get sent to the http://localhost:8080/category/ address
 public class CategoryResource {
 	
 	@Autowired
