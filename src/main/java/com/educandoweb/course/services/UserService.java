@@ -30,4 +30,9 @@ public class UserService {
 		
 	}
 	
+	//to delete in the database a user by the id
+	public void delete(Long id) {
+		repository.deleteById(id);
+	}
+	
 }
