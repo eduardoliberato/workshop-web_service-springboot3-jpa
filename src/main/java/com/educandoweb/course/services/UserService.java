@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.educandoweb.course.entities.User;
 import com.educandoweb.course.repositories.UserRepository;
+import com.educandoweb.course.services.exceptions.ResourceNotFoundException;
 
 @Service //to register a service, as a component of the spring
 public class UserService {
@@ -21,7 +22,8 @@ public class UserService {
 	
 	public User findById(long id) {
 		Optional<User> obj = repository.findById(id);
-		return obj.get(); //will return a obj of the type User, that be inside the optional
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+		//orElseThrow - tries to do the get, if there is no user he send one exception, in this case our custom exception 
 }
 	
 	//to save in the database a new user
